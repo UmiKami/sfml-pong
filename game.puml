@@ -1,0 +1,32 @@
+@startuml
+
+Entity <|-- Ball : extends
+Entity <|-- Paddle : extends
+
+class Entity {
+ - sf::Vector2f position
+ - sf::Texture texture
+ - sf::Sprite sprite
+ - sf::Vector2f direction
+ - sf::Color color
+ - float Speed
+ + virtual void Move(sf::Vector2f inputDir, float DeltaTime)
+ + bool IsColliding(Entity OtherEntity)
+ + void SetSpeed(float speed)
+ + void SetColor(sf::Color color)
+ + void SetPosition(sf::Vector2f pos)
+ + sf::Vector2f GetPosition()
+ + sf::Color GetColor()
+}
+
+class Ball {
+ + ResetPosition()
+ + Launch()
+}
+
+class Paddle {
+ - bool isNPC = false
+ - void AIMove()
+}
+
+@enduml
