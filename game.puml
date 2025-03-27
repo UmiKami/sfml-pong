@@ -5,28 +5,46 @@ Entity <|-- Paddle : extends
 
 class Entity {
  - sf::Vector2f position
+ - sf::Shape shape
  - sf::Texture texture
  - sf::Sprite sprite
  - sf::Vector2f direction
  - sf::Color color
- - float Speed
+ - float speed
+ - std::vector<Entity*> colliderEntities
  + virtual void Move(sf::Vector2f inputDir, float DeltaTime)
- + bool IsColliding(Entity OtherEntity)
+ + bool IsColliding()
+ + void SetColliderEntities(std::vector<Entity*> colliderEntities)
+ + void AddColliderEntity(Entity* entity)
  + void SetSpeed(float speed)
  + void SetColor(sf::Color color)
  + void SetPosition(sf::Vector2f pos)
  + sf::Vector2f GetPosition()
+ + sf::Vector2f GetDirection()
  + sf::Color GetColor()
+ + float GetSpeed()
 }
 
 class Ball {
+ - sf::CircleShape shape;
  + ResetPosition()
  + Launch()
+ + virtual void Move(sf::Vector2f inputDir, float DeltaTime)
+ + sf::CircleShape GetShape()
+ + void SetShape(sf::CircleShape shape)
 }
 
 class Paddle {
- - bool isNPC = false
+ - bool npc = false
+ - Ball* ball
+ - sf::RectangleShape shape;
  - void AIMove()
+ + bool IsNPC();
+ + void SetBallEntity(Ball* ball)
+ + virtual void Move(sf::Vector2f inputDir, float DeltaTime)
+ + sf::RectangleShape GetShape()
+ + void SetShape(sf::RectangleShape shape)
+
 }
 
 @enduml
